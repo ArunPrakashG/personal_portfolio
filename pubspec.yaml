@@ -1,0 +1,22 @@
+name: personal_portfolio
+description: "A new Flutter project."
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ">=3.2.6 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  personal_flutter_lints:
+    git:
+      url: https://github.com/ArunPrakashG/personal_flutter_lints.git
+      ref: main
+
+flutter:
+  uses-material-design: true
