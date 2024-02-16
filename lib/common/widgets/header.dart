@@ -1,10 +1,10 @@
-import 'dart:ui';
-
 import 'package:circular_clip_route/circular_clip_route.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../pages/capabilities/capabilities_page.dart';
+import '../../pages/experience/experience_page.dart';
+import '../../pages/home/home_page.dart';
 
 class Header extends StatelessWidget implements PreferredSizeWidget {
   const Header({super.key});
@@ -42,6 +42,20 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
             );
           },
         ),
+        Builder(
+          builder: (context) {
+            return TextButton(
+              onPressed: () => _onExperienceTapped(context),
+              child: Text(
+                'Experience'.toLowerCase(),
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            );
+          },
+        ),
         TextButton(
           onPressed: () {},
           child: Text(
@@ -67,17 +81,35 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   }
 
   void _onCapabilitiesTapped(BuildContext context) {
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
       CircularClipRoute(
         expandFrom: context,
-        builder: (context) => const SkillsPage(),
+        builder: (context) => const CapabilitiesPage(),
         transitionDuration: const Duration(milliseconds: 900),
       ),
     );
   }
 
   void _onHomeTapped(BuildContext context) {
-    Navigator.popUntil(context, (route) => route.isFirst);
+    Navigator.pushReplacement(
+      context,
+      CircularClipRoute(
+        expandFrom: context,
+        builder: (context) => const HomePage(),
+        transitionDuration: const Duration(milliseconds: 900),
+      ),
+    );
+  }
+
+  void _onExperienceTapped(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      CircularClipRoute(
+        expandFrom: context,
+        builder: (context) => const ExperiencePage(),
+        transitionDuration: const Duration(milliseconds: 900),
+      ),
+    );
   }
 }
