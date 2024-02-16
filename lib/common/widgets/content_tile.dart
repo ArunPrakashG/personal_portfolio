@@ -28,6 +28,7 @@ class ContentTile extends StatelessWidget {
 
     if (toVertical) {
       return SingleChildScrollView(
+        padding: const EdgeInsets.all(32),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -36,7 +37,7 @@ class ContentTile extends StatelessWidget {
                 maxWidth: MediaQuery.sizeOf(context).width / 1.5,
                 maxHeight: MediaQuery.sizeOf(context).width / 1.5,
               ),
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(8),
               child: () {
                 if (isUrl(lottie)) {
                   return Lottie.network(
@@ -54,8 +55,6 @@ class ContentTile extends StatelessWidget {
               }(),
             ),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,12 +108,12 @@ class ContentTile extends StatelessWidget {
     }
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Expanded(
           child: SingleChildScrollView(
+            padding: const EdgeInsets.all(32),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 DefaultTextStyle(
@@ -163,7 +162,7 @@ class ContentTile extends StatelessWidget {
             maxHeight: 400,
             maxWidth: 400,
           ),
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(32),
           child: () {
             if (isUrl(lottie)) {
               return Lottie.network(

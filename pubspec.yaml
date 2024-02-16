@@ -18,9 +18,13 @@ dependencies:
   flutter_svg: ^2.0.9
   google_fonts: ^6.1.0
   lottie: ^3.0.0
+  mesh_gradient: ^1.1.6
+  simple_shadow: ^0.3.1
   timelines: ^0.1.0
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.3.11
   flutter_test:
     sdk: flutter
   personal_flutter_lints:
@@ -35,3 +39,11 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/lottie/
+
+flutter_launcher_icons:
+  image_path: "assets/logo.png"
+  web:
+    generate: true
+flutter_native_splash:
+  color: "#FCFCFC"
+  image: "assets/logo.png"
