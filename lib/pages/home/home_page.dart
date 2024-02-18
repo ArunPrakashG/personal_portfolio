@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mesh_gradient/mesh_gradient.dart';
 
 import '../../common/widgets/content_tile.dart';
 import '../../common/widgets/header.dart';
@@ -12,27 +13,27 @@ class HomePage extends StatelessWidget {
       appBar: const Header(),
       body: Stack(
         children: [
-          // Positioned.fill(
-          //   child: AnimatedMeshGradient(
-          //     colors: const [
-          //       Color(0xFFF8F8FF),
-          //       Color(0xFFF8F8FF),
-          //       Color(0xFF21B0FE),
-          //       Color(0xFFF8F8FF),
-          //     ],
-          //     options: AnimatedMeshGradientOptions(
-          //       frequency: 1,
-          //       amplitude: 22,
-          //       speed: 1,
-          //     ),
-          //   ),
-          // ),
           Positioned.fill(
-            child: Image.asset(
-              'assets/images/background.jpg',
-              fit: BoxFit.cover,
+            child: AnimatedMeshGradient(
+              colors: const [
+                Color(0xFFF8F8FF),
+                Color(0xFFF8F8FF),
+                Color(0xFF21B0FE),
+                Color(0xFFF8F8FF),
+              ],
+              options: AnimatedMeshGradientOptions(
+                frequency: 1,
+                amplitude: 22,
+                speed: 1,
+              ),
             ),
           ),
+          // Positioned.fill(
+          //   child: Image.asset(
+          //     'assets/images/background.jpg',
+          //     fit: BoxFit.cover,
+          //   ),
+          // ),
           Positioned.fill(
             child: ContentTile(
               title: "Hey there! I'm Arun Prakash",
