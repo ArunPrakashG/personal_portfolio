@@ -125,8 +125,29 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
 
   void _onCapabilitiesTapped(
     BuildContext context, [
-    bool withAnimation = true,
+    bool withAnimation = false,
   ]) {
+    const currentRoute = '/capabilities';
+
+    final nextRoute = MaterialPageRoute(
+      builder: (context) => const CapabilitiesPage(),
+      settings: const RouteSettings(name: currentRoute),
+    );
+
+    final currentRouteName = ModalRoute.of(context)?.settings.name;
+
+    if (currentRouteName == currentRoute) {
+      return;
+    }
+
+    if (!withAnimation) {
+      Navigator.pushReplacement(
+        context,
+        nextRoute,
+      );
+      return;
+    }
+
     if (!withAnimation) {
       Navigator.pushReplacement(
         context,
@@ -147,7 +168,28 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  void _onHomeTapped(BuildContext context, [bool withAnimation = true]) {
+  void _onHomeTapped(BuildContext context, [bool withAnimation = false]) {
+    const currentRoute = '/home';
+
+    final nextRoute = MaterialPageRoute(
+      builder: (context) => const HomePage(),
+      settings: const RouteSettings(name: currentRoute),
+    );
+
+    final currentRouteName = ModalRoute.of(context)?.settings.name;
+
+    if (currentRouteName == currentRoute) {
+      return;
+    }
+
+    if (!withAnimation) {
+      Navigator.pushReplacement(
+        context,
+        nextRoute,
+      );
+      return;
+    }
+
     if (!withAnimation) {
       Navigator.pushReplacement(
         context,
@@ -168,13 +210,24 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  void _onExperienceTapped(BuildContext context, [bool withAnimation = true]) {
+  void _onExperienceTapped(BuildContext context, [bool withAnimation = false]) {
+    const currentRoute = '/experience';
+
+    final nextRoute = MaterialPageRoute(
+      builder: (context) => const ExperiencePage(),
+      settings: const RouteSettings(name: currentRoute),
+    );
+
+    final currentRouteName = ModalRoute.of(context)?.settings.name;
+
+    if (currentRouteName == currentRoute) {
+      return;
+    }
+
     if (!withAnimation) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-          builder: (context) => const ExperiencePage(),
-        ),
+        nextRoute,
       );
       return;
     }
@@ -207,7 +260,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
             children: [
               ListTile(
                 title: const Text('Home'),
-                onTap: () => _onHomeTapped(context, false),
+                onTap: () => _onHomeTapped(context),
                 trailing: const Icon(
                   Icons.arrow_forward,
                   size: 18,
@@ -215,7 +268,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
               ),
               ListTile(
                 title: const Text('Capabilities'),
-                onTap: () => _onCapabilitiesTapped(context, false),
+                onTap: () => _onCapabilitiesTapped(context),
                 trailing: const Icon(
                   Icons.arrow_forward,
                   size: 18,
@@ -223,7 +276,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
               ),
               ListTile(
                 title: const Text('Experience'),
-                onTap: () => _onExperienceTapped(context, false),
+                onTap: () => _onExperienceTapped(context),
                 trailing: const Icon(
                   Icons.arrow_forward,
                   size: 18,

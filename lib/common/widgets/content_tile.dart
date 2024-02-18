@@ -72,7 +72,7 @@ class ContentTile extends StatelessWidget {
                         animatedTexts: [
                           TypewriterAnimatedText(
                             title,
-                            speed: const Duration(milliseconds: 200),
+                            speed: const Duration(milliseconds: 100),
                           ),
                         ],
                       ),
@@ -128,7 +128,7 @@ class ContentTile extends StatelessWidget {
                     animatedTexts: [
                       TypewriterAnimatedText(
                         title,
-                        speed: const Duration(milliseconds: 200),
+                        speed: const Duration(milliseconds: 100),
                       ),
                     ],
                   ),
