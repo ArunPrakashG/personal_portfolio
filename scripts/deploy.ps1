@@ -1,3 +1,1 @@
-& flutter pub global run peanut -b gh-pages --web-renderer canvaskit | Out-Null
-
-& git push origin --set-upstream gh-pages | Out-Null
+& flutter build web --release --web-renderer "canvaskit" --build-number 0.1.1 --source-maps | Out-Null

@@ -19,7 +19,7 @@ class ExperiencePage extends StatelessWidget {
               title: 'Experience',
               content:
                   'I have been working as a software developer for over 10 years. I have experience in a wide range of technologies and have worked on a variety of projects. I have worked on mobile apps, web apps, and desktop apps. I have also worked on a variety of projects, including e-commerce, social media, and enterprise software.',
-              lottie: 'assets/lottie/coding-skills.json',
+              lottie: 'assets/lottie/capabilities.json',
               bottom: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
