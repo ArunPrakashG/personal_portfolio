@@ -16,3 +16,4 @@ doc/api/
 *.json
 .flutter-plugins
 .flutter-plugins-dependencies
+.firebase/

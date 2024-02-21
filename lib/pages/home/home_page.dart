@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mesh_gradient/mesh_gradient.dart';
+import 'package:icons_plus/icons_plus.dart';
 
+import '../../common/animated_mesh_gradient/animated_mesh_gradient.dart';
 import '../../common/widgets/content_tile.dart';
 import '../../common/widgets/header.dart';
 
@@ -17,7 +18,7 @@ class HomePage extends StatelessWidget {
             child: AnimatedMeshGradient(
               colors: const [
                 Color(0xFFF8F8FF),
-                Color(0xFFF8F8FF),
+                Color(0xFF21B0FE),
                 Color(0xFF21B0FE),
                 Color(0xFFF8F8FF),
               ],
@@ -41,26 +42,37 @@ class HomePage extends StatelessWidget {
                   "Emerging from the picturesque terrains of Kerala, I excel in Mobile & Desktop Application Development. With proficiency in Flutter & Xamarin.Forms Frameworks, I've also engineered production-ready libraries.",
               lottie: 'assets/lottie/coding.json',
               subTitle: 'A Senior Software Engineer',
-              bottom: ButtonBar(
-                alignment: MainAxisAlignment.start,
-                buttonPadding: EdgeInsets.zero,
-                layoutBehavior: ButtonBarLayoutBehavior.constrained,
+              bottom: Wrap(
+                spacing: 4,
+                runSpacing: 4,
                 children: [
                   IconButton(
-                    icon: const Icon(
-                      Icons.facebook,
+                    icon: Brand(
+                      Brands.github,
                     ),
                     onPressed: () {},
                   ),
                   IconButton(
-                    icon: const Icon(
-                      Icons.mail,
+                    icon: Brand(
+                      Brands.linkedin,
                     ),
                     onPressed: () {},
                   ),
                   IconButton(
-                    icon: const Icon(
-                      Icons.phone,
+                    icon: Brand(
+                      Brands.twitterx,
+                    ),
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                    icon: Brand(
+                      Brands.facebook,
+                    ),
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                    icon: Brand(
+                      Brands.instagram,
                     ),
                     onPressed: () {},
                   ),

@@ -21,7 +21,7 @@ class CapabilityItem extends StatelessWidget {
       message: tooltip,
       child: FadeInUp(
         duration: const Duration(milliseconds: 400),
-        delay: Duration(milliseconds: 100 * index),
+        delay: Duration(milliseconds: index * 500),
         child: Container(
           padding: const EdgeInsets.all(4),
           height: 44,

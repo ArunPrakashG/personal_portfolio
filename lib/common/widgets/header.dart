@@ -1,10 +1,8 @@
-import 'package:circular_clip_route/circular_clip_route.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../pages/capabilities/capabilities_page.dart';
-import '../../pages/experience/experience_page.dart';
-import '../../pages/home/home_page.dart';
+import '../../routes.dart';
 
 class Header extends StatelessWidget implements PreferredSizeWidget {
   const Header({super.key});
@@ -95,7 +93,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
                     },
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () => _onProjectsTapped(context),
                     child: Text(
                       'Projects'.toLowerCase(),
                       style: GoogleFonts.poppins(
@@ -105,7 +103,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () => _onContactTapped(context),
                     child: Text(
                       'Contact'.toLowerCase(),
                       style: GoogleFonts.poppins(
@@ -125,121 +123,114 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
 
   void _onCapabilitiesTapped(
     BuildContext context, [
-    bool withAnimation = false,
+    bool withAnimation = true,
   ]) {
-    const currentRoute = '/capabilities';
+    context.pushReplacement(CAPABILITIES_ROUTE);
 
-    final nextRoute = MaterialPageRoute(
-      builder: (context) => const CapabilitiesPage(),
-      settings: const RouteSettings(name: currentRoute),
-    );
+    // if (!withAnimation) {
+    //   Navigator.pushReplacement(
+    //     context,
+    //     nextRoute,
+    //   );
+    //   return;
+    // }
 
-    final currentRouteName = ModalRoute.of(context)?.settings.name;
+    // if (!withAnimation) {
+    //   Navigator.pushReplacement(
+    //     context,
+    //     MaterialPageRoute(
+    //       builder: (context) => const CapabilitiesPage(),
+    //     ),
+    //   );
+    //   return;
+    // }
 
-    if (currentRouteName == currentRoute) {
-      return;
-    }
-
-    if (!withAnimation) {
-      Navigator.pushReplacement(
-        context,
-        nextRoute,
-      );
-      return;
-    }
-
-    if (!withAnimation) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const CapabilitiesPage(),
-        ),
-      );
-      return;
-    }
-
-    Navigator.pushReplacement(
-      context,
-      CircularClipRoute(
-        expandFrom: context,
-        builder: (context) => const CapabilitiesPage(),
-        transitionDuration: const Duration(milliseconds: 900),
-      ),
-    );
+    // Navigator.pushReplacement(
+    //   context,
+    //   CircularClipRoute(
+    //     expandFrom: context,
+    //     builder: (context) => const CapabilitiesPage(),
+    //     transitionDuration: const Duration(milliseconds: 900),
+    //   ),
+    // );
   }
 
-  void _onHomeTapped(BuildContext context, [bool withAnimation = false]) {
-    const currentRoute = '/home';
+  void _onHomeTapped(BuildContext context, [bool withAnimation = true]) {
+    context.pushReplacement(HOME_ROUTE);
 
-    final nextRoute = MaterialPageRoute(
-      builder: (context) => const HomePage(),
-      settings: const RouteSettings(name: currentRoute),
-    );
+    // const currentRoute = '/home';
 
-    final currentRouteName = ModalRoute.of(context)?.settings.name;
+    // final nextRoute = MaterialPageRoute(
+    //   builder: (context) => const HomePage(),
+    //   settings: const RouteSettings(name: currentRoute),
+    // );
 
-    if (currentRouteName == currentRoute) {
-      return;
-    }
+    // final currentRouteName = ModalRoute.of(context)?.settings.name;
 
-    if (!withAnimation) {
-      Navigator.pushReplacement(
-        context,
-        nextRoute,
-      );
-      return;
-    }
+    // if (currentRouteName == currentRoute) {
+    //   return;
+    // }
 
-    if (!withAnimation) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const HomePage(),
-        ),
-      );
-      return;
-    }
+    // if (!withAnimation) {
+    //   Navigator.pushReplacement(
+    //     context,
+    //     nextRoute,
+    //   );
+    //   return;
+    // }
 
-    Navigator.pushReplacement(
-      context,
-      CircularClipRoute(
-        expandFrom: context,
-        builder: (context) => const HomePage(),
-        transitionDuration: const Duration(milliseconds: 900),
-      ),
-    );
+    // if (!withAnimation) {
+    //   Navigator.pushReplacement(
+    //     context,
+    //     MaterialPageRoute(
+    //       builder: (context) => const HomePage(),
+    //     ),
+    //   );
+    //   return;
+    // }
+
+    // Navigator.pushReplacement(
+    //   context,
+    //   CircularClipRoute(
+    //     expandFrom: context,
+    //     builder: (context) => const HomePage(),
+    //     transitionDuration: const Duration(milliseconds: 900),
+    //   ),
+    // );
   }
 
-  void _onExperienceTapped(BuildContext context, [bool withAnimation = false]) {
-    const currentRoute = '/experience';
+  void _onExperienceTapped(BuildContext context, [bool withAnimation = true]) {
+    context.pushReplacement(EXPERIENCE_ROUTE);
 
-    final nextRoute = MaterialPageRoute(
-      builder: (context) => const ExperiencePage(),
-      settings: const RouteSettings(name: currentRoute),
-    );
+    // const currentRoute = '/experience';
 
-    final currentRouteName = ModalRoute.of(context)?.settings.name;
+    // final nextRoute = MaterialPageRoute(
+    //   builder: (context) => const ExperiencePage(),
+    //   settings: const RouteSettings(name: currentRoute),
+    // );
 
-    if (currentRouteName == currentRoute) {
-      return;
-    }
+    // final currentRouteName = ModalRoute.of(context)?.settings.name;
 
-    if (!withAnimation) {
-      Navigator.pushReplacement(
-        context,
-        nextRoute,
-      );
-      return;
-    }
+    // if (currentRouteName == currentRoute) {
+    //   return;
+    // }
 
-    Navigator.pushReplacement(
-      context,
-      CircularClipRoute(
-        expandFrom: context,
-        builder: (context) => const ExperiencePage(),
-        transitionDuration: const Duration(milliseconds: 900),
-      ),
-    );
+    // if (!withAnimation) {
+    //   Navigator.pushReplacement(
+    //     context,
+    //     nextRoute,
+    //   );
+    //   return;
+    // }
+
+    // Navigator.pushReplacement(
+    //   context,
+    //   CircularClipRoute(
+    //     expandFrom: context,
+    //     builder: (context) => const ExperiencePage(),
+    //     transitionDuration: const Duration(milliseconds: 900),
+    //   ),
+    // );
   }
 
   Future<void> _onMoreTapped(BuildContext context) async {
@@ -304,4 +295,8 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
       },
     );
   }
+
+  void _onProjectsTapped(BuildContext context) {}
+
+  void _onContactTapped(BuildContext context) {}
 }

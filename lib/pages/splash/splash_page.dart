@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../home/home_page.dart';
+import '../../routes.dart';
 import 'providers/splash_navigation_provider.dart';
 
 class SplashPage extends ConsumerWidget {
@@ -16,9 +19,8 @@ class SplashPage extends ConsumerWidget {
           return;
         }
 
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const HomePage()),
-        );
+        log('Navigating to home page');
+        context.go(HOME_ROUTE);
       });
     });
 

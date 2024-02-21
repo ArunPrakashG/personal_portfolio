@@ -1,1 +1,2 @@
-& flutter build web --release --web-renderer "canvaskit" --build-number 0.1.1 --source-maps | Out-Null
+& flutter build web --release --web-renderer "canvaskit" | Out-Null
+& firebase deploy

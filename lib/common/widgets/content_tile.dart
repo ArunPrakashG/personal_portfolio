@@ -44,6 +44,9 @@ class ContentTile extends StatelessWidget {
                     lottie,
                     fit: BoxFit.fitWidth,
                     repeat: true,
+                    renderCache: RenderCache.drawingCommands,
+                    frameRate: const FrameRate(60),
+                    backgroundLoading: true,
                   );
                 }
 
@@ -51,6 +54,9 @@ class ContentTile extends StatelessWidget {
                   lottie,
                   fit: BoxFit.fitWidth,
                   repeat: true,
+                  renderCache: RenderCache.drawingCommands,
+                  frameRate: const FrameRate(60),
+                  backgroundLoading: true,
                 );
               }(),
             ),
