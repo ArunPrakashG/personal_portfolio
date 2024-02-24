@@ -1,11 +1,16 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../routes.dart';
 
 class Header extends StatelessWidget implements PreferredSizeWidget {
-  const Header({super.key});
+  const Header({
+    required this.controller,
+    super.key,
+  });
+
+  final PageController controller;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -19,7 +24,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
       ),
       height: preferredSize.height,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xFFFFFBFF),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
@@ -53,66 +58,18 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
               }
 
               return Row(
-                children: [
-                  TextButton(
-                    onPressed: () => _onHomeTapped(context),
+                children: views.map((e) {
+                  return TextButton(
+                    onPressed: () => _onPageButtonTapped(e),
                     child: Text(
-                      'Home'.toLowerCase(),
+                      e.name.toLowerCase(),
                       style: GoogleFonts.poppins(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                  ),
-                  Builder(
-                    builder: (context) {
-                      return TextButton(
-                        onPressed: () => _onCapabilitiesTapped(context),
-                        child: Text(
-                          'Capabilities'.toLowerCase(),
-                          style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                  Builder(
-                    builder: (context) {
-                      return TextButton(
-                        onPressed: () => _onExperienceTapped(context),
-                        child: Text(
-                          'Experience'.toLowerCase(),
-                          style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                  TextButton(
-                    onPressed: () => _onProjectsTapped(context),
-                    child: Text(
-                      'Projects'.toLowerCase(),
-                      style: GoogleFonts.poppins(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () => _onContactTapped(context),
-                    child: Text(
-                      'Contact'.toLowerCase(),
-                      style: GoogleFonts.poppins(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ],
+                  );
+                }).toList(),
               );
             },
           ),
@@ -121,116 +78,12 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  void _onCapabilitiesTapped(
-    BuildContext context, [
-    bool withAnimation = true,
-  ]) {
-    context.pushReplacement(CAPABILITIES_ROUTE);
-
-    // if (!withAnimation) {
-    //   Navigator.pushReplacement(
-    //     context,
-    //     nextRoute,
-    //   );
-    //   return;
-    // }
-
-    // if (!withAnimation) {
-    //   Navigator.pushReplacement(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => const CapabilitiesPage(),
-    //     ),
-    //   );
-    //   return;
-    // }
-
-    // Navigator.pushReplacement(
-    //   context,
-    //   CircularClipRoute(
-    //     expandFrom: context,
-    //     builder: (context) => const CapabilitiesPage(),
-    //     transitionDuration: const Duration(milliseconds: 900),
-    //   ),
-    // );
-  }
-
-  void _onHomeTapped(BuildContext context, [bool withAnimation = true]) {
-    context.pushReplacement(HOME_ROUTE);
-
-    // const currentRoute = '/home';
-
-    // final nextRoute = MaterialPageRoute(
-    //   builder: (context) => const HomePage(),
-    //   settings: const RouteSettings(name: currentRoute),
-    // );
-
-    // final currentRouteName = ModalRoute.of(context)?.settings.name;
-
-    // if (currentRouteName == currentRoute) {
-    //   return;
-    // }
-
-    // if (!withAnimation) {
-    //   Navigator.pushReplacement(
-    //     context,
-    //     nextRoute,
-    //   );
-    //   return;
-    // }
-
-    // if (!withAnimation) {
-    //   Navigator.pushReplacement(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => const HomePage(),
-    //     ),
-    //   );
-    //   return;
-    // }
-
-    // Navigator.pushReplacement(
-    //   context,
-    //   CircularClipRoute(
-    //     expandFrom: context,
-    //     builder: (context) => const HomePage(),
-    //     transitionDuration: const Duration(milliseconds: 900),
-    //   ),
-    // );
-  }
-
-  void _onExperienceTapped(BuildContext context, [bool withAnimation = true]) {
-    context.pushReplacement(EXPERIENCE_ROUTE);
-
-    // const currentRoute = '/experience';
-
-    // final nextRoute = MaterialPageRoute(
-    //   builder: (context) => const ExperiencePage(),
-    //   settings: const RouteSettings(name: currentRoute),
-    // );
-
-    // final currentRouteName = ModalRoute.of(context)?.settings.name;
-
-    // if (currentRouteName == currentRoute) {
-    //   return;
-    // }
-
-    // if (!withAnimation) {
-    //   Navigator.pushReplacement(
-    //     context,
-    //     nextRoute,
-    //   );
-    //   return;
-    // }
-
-    // Navigator.pushReplacement(
-    //   context,
-    //   CircularClipRoute(
-    //     expandFrom: context,
-    //     builder: (context) => const ExperiencePage(),
-    //     transitionDuration: const Duration(milliseconds: 900),
-    //   ),
-    // );
+  void _onPageButtonTapped(AppView view) {
+    controller.animateToPage(
+      view.index,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
   }
 
   Future<void> _onMoreTapped(BuildContext context) async {
@@ -248,55 +101,29 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
           alignment: Alignment.topCenter,
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                title: const Text('Home'),
-                onTap: () => _onHomeTapped(context),
+            children: views.map((e) {
+              return ListTile(
+                title: Text(e.name),
+                onTap: () {
+                  _onPageButtonTapped(e);
+                  Navigator.of(context).pop();
+                },
                 trailing: const Icon(
                   Icons.arrow_forward,
                   size: 18,
                 ),
-              ),
-              ListTile(
-                title: const Text('Capabilities'),
-                onTap: () => _onCapabilitiesTapped(context),
-                trailing: const Icon(
-                  Icons.arrow_forward,
-                  size: 18,
-                ),
-              ),
-              ListTile(
-                title: const Text('Experience'),
-                onTap: () => _onExperienceTapped(context),
-                trailing: const Icon(
-                  Icons.arrow_forward,
-                  size: 18,
-                ),
-              ),
-              ListTile(
-                title: const Text('Projects'),
-                onTap: () {},
-                trailing: const Icon(
-                  Icons.arrow_forward,
-                  size: 18,
-                ),
-              ),
-              ListTile(
-                title: const Text('Contact'),
-                onTap: () {},
-                trailing: const Icon(
-                  Icons.arrow_forward,
-                  size: 18,
-                ),
-              ),
-            ],
+              );
+            }).toList(),
           ),
         );
       },
     );
   }
 
-  void _onProjectsTapped(BuildContext context) {}
-
-  void _onContactTapped(BuildContext context) {}
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty<PageController>('controller', controller));
+  }
 }
