@@ -38,7 +38,7 @@ class _PageNavigationArrowsState extends State<PageNavigationArrows> {
 
   void _setButtonVisibilityState() {
     final currentPage = widget.controller.page;
-    final isFirstPage = views.first.index == currentPage;
+    final isFirstPage = views.first.index == currentPage || currentPage == null;
     final isLastPage = views.last.index == currentPage;
 
     if (!isFirstPage && !isLastPage) {

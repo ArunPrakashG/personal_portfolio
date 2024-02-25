@@ -17,7 +17,7 @@ class Quote {
   final String author;
 }
 
-final quotesProvider = FutureProvider.autoDispose<Quote>((ref) async {
+final quotesProvider = FutureProvider<Quote>((ref) async {
   final response = await Dio().get<Map<String, dynamic>>(
     quotesEndpoint,
     queryParameters: <String, dynamic>{

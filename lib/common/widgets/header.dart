@@ -35,11 +35,14 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
       ),
       child: Row(
         children: [
-          Text(
-            '<Arun Prakash/>',
-            style: GoogleFonts.firaCode(
-              fontSize: 22,
-              fontWeight: FontWeight.w600,
+          GestureDetector(
+            onTap: _onLogoTapped,
+            child: Text(
+              '<Arun Prakash/>',
+              style: GoogleFonts.firaCode(
+                fontSize: 22,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
           const Spacer(),
@@ -125,5 +128,13 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
     super.debugFillProperties(properties);
     properties
         .add(DiagnosticsProperty<PageController>('controller', controller));
+  }
+
+  void _onLogoTapped() {
+    controller.animateToPage(
+      0,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
   }
 }

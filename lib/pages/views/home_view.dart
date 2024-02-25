@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../common/widgets/hover_button.dart';
 import '../../common/widgets/hover_icon.dart';
@@ -159,27 +160,37 @@ class HomeView extends StatelessWidget {
                   HoverIcon(
                     icon: const Icon(AntDesign.github_outline),
                     hoverIcon: Brand(Brands.github),
-                    onPressed: () {},
+                    onPressed: () => _launchSocialMediaUrl(
+                      'https://github.com/ArunPrakashG',
+                    ),
                   ),
                   HoverIcon(
                     icon: const Icon(AntDesign.linkedin_outline),
                     hoverIcon: Brand(Brands.linkedin),
-                    onPressed: () {},
+                    onPressed: () => _launchSocialMediaUrl(
+                      'https://www.linkedin.com/in/arunprakashg/',
+                    ),
                   ),
                   HoverIcon(
                     icon: const Icon(AntDesign.twitter_outline),
                     hoverIcon: Brand(Brands.twitter),
-                    onPressed: () {},
+                    onPressed: () => _launchSocialMediaUrl(
+                      'https://twitter.com/_arunprakash_',
+                    ),
                   ),
                   HoverIcon(
                     icon: const Icon(AntDesign.facebook_outline),
                     hoverIcon: Brand(Brands.facebook),
-                    onPressed: () {},
+                    onPressed: () => _launchSocialMediaUrl(
+                      'https://www.facebook.com/arunprakash.i/',
+                    ),
                   ),
                   HoverIcon(
                     icon: const Icon(AntDesign.instagram_outline),
                     hoverIcon: Brand(Brands.instagram),
-                    onPressed: () {},
+                    onPressed: () => _launchSocialMediaUrl(
+                      'https://www.instagram.com/i.arunprakash',
+                    ),
                   ),
                 ],
               ),
@@ -193,7 +204,7 @@ class HomeView extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: _onContactTapped,
               ),
               Consumer(
                 builder: (context, ref, child) {
@@ -253,6 +264,19 @@ class HomeView extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  void _launchSocialMediaUrl(String url) {
+    launchUrl(Uri.parse(url));
+  }
+
+  void _onContactTapped() {
+    final emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: 'arun.prakash.456789@gmail.com',
+    );
+
+    launchUrl(emailLaunchUri);
   }
 
   double _getImageTranslationValue(BuildContext context, ImageSize size) {

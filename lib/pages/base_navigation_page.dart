@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +16,25 @@ class BaseNavigationPage extends StatefulWidget {
 
 class _BaseNavigationPageState extends State<BaseNavigationPage> {
   final pageController = PageController();
+  bool displayFooter = true;
 
   @override
   void initState() {
     super.initState();
+
+    pageController.addListener(_shouldDisplayFooter);
+  }
+
+  void _shouldDisplayFooter() {
+    if (pageController.page == 0 || pageController.page == null) {
+      setState(() {
+        displayFooter = true;
+      });
+    } else {
+      setState(() {
+        displayFooter = false;
+      });
+    }
   }
 
   @override
@@ -56,9 +72,40 @@ class _BaseNavigationPageState extends State<BaseNavigationPage> {
           ),
           Positioned(
             right: 18,
-            bottom: 18,
+            bottom: 44,
             child: PageNavigationArrows(
               controller: pageController,
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Visibility(
+              visible: displayFooter,
+              child: FadeInUp(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 4,
+                  ),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF222E50).withOpacity(0.2),
+                  ),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Made with ❤️ by Arun Prakash using Flutter & Dart',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
         ],
@@ -72,5 +119,6 @@ class _BaseNavigationPageState extends State<BaseNavigationPage> {
     properties.add(
       DiagnosticsProperty<PageController>('pageController', pageController),
     );
+    properties.add(DiagnosticsProperty<bool>('displayFooter', displayFooter));
   }
 }
