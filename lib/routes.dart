@@ -2,13 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'constants.dart';
 import 'pages/views/capabilities_view.dart';
-import 'pages/views/contact_view.dart';
 import 'pages/views/experience_view.dart';
 import 'pages/views/home_view.dart';
 import 'pages/views/projects_view.dart';
-
-const SPLASH_ROUTE = '/';
-const BASE_ROUTE = '/base';
 
 class AppView {
   AppView(
@@ -30,5 +26,4 @@ List<AppView> views = [
   AppView('Capabilities', 1, () => const CapabilitiesView()),
   AppView('Experience', 2, () => const ExperienceView()),
   AppView('Projects', 3, () => const ProjectsView()),
-  AppView('Contact', 4, () => const ContactView()),
 ];

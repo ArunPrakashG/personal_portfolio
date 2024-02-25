@@ -1,10 +1,14 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 
 import '../../common/widgets/hover_button.dart';
 import '../../common/widgets/hover_icon.dart';
+import 'providers/app_init_provider.dart';
 import 'providers/image_size_provider.dart';
+import 'providers/quotes_provider.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -20,6 +24,48 @@ class HomeView extends StatelessWidget {
 
     return Stack(
       children: [
+        Positioned(
+          left: 12,
+          top: 12,
+          height: 80,
+          child: Consumer(
+            builder: (context, ref, child) {
+              return ref.watch(appInitProvider).maybeWhen(
+                loading: () {
+                  return FadeInLeft(
+                    child: Material(
+                      borderRadius: BorderRadius.circular(12),
+                      child: const Padding(
+                        padding: EdgeInsets.all(12),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SizedBox(
+                              width: 16,
+                              height: 16,
+                              child: CircularProgressIndicator(),
+                            ),
+                            SizedBox(width: 12),
+                            Text(
+                              'Caching assets...',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+                orElse: () {
+                  return const SizedBox.shrink();
+                },
+              );
+            },
+          ),
+        ),
         Positioned(
           top: 0,
           right: 0,
@@ -148,6 +194,59 @@ class HomeView extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {},
+              ),
+              Consumer(
+                builder: (context, ref, child) {
+                  return ref.watch(quotesProvider).maybeWhen(
+                    data: (data) {
+                      return FadeInUp(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 18,
+                            horizontal: 12,
+                          ),
+                          child: Text.rich(
+                            TextSpan(
+                              text: '“',
+                              style: const TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: data.content,
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                const TextSpan(
+                                  text: '”',
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: ' - ${data.author}',
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            style: GoogleFonts.arimo(),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      );
+                    },
+                    orElse: () {
+                      return const SizedBox.shrink();
+                    },
+                  );
+                },
               ),
             ],
           ),

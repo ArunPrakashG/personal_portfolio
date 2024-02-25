@@ -41,9 +41,6 @@ class _HoverButtonState extends State<HoverButton> {
           ),
         ],
       ),
-      // transform: isHovering
-      //     ? Matrix4.translationValues(0, -4, 0)
-      //     : Matrix4.translationValues(0, 0, 0),
       child: ElevatedButton.icon(
         onPressed: widget.onPressed,
         onHover: (value) {

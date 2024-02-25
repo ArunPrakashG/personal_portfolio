@@ -10,17 +10,17 @@ dependencies:
   animate_do: ^3.3.3
   animated_text_kit: ^4.2.2
   bulleted_list: ^0.0.1+0.1a
+  dio: ^5.4.1
   flex_color_scheme: ^7.3.1
   flutter:
     sdk: flutter
   flutter_riverpod: ^2.4.10
-  flutter_shaders: ^0.1.2
   flutter_svg: ^2.0.10+1
-  go_router: ^13.2.0
   google_fonts: ^6.1.0
   icons_plus: ^5.0.0
   lottie: ^3.1.0
   simple_shadow: ^0.3.1
+  url_launcher: ^6.2.5
 
 dev_dependencies:
   flutter_launcher_icons: ^0.13.1
