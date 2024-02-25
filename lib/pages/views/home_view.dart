@@ -1,9 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:icons_plus/icons_plus.dart';
 
+import '../../common/widgets/hover_button.dart';
+import '../../common/widgets/hover_icon.dart';
 import 'providers/image_size_provider.dart';
 
 class HomeView extends StatelessWidget {
@@ -87,6 +87,14 @@ class HomeView extends StatelessWidget {
                         fontSize: 42,
                         color: Colors.blue,
                         fontWeight: FontWeight.w800,
+                        shadows: [
+                          BoxShadow(
+                            color: Colors.blueAccent,
+                            blurRadius: 8,
+                            spreadRadius: 6,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
                       ),
                     ),
                     TextSpan(
@@ -99,46 +107,39 @@ class HomeView extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              Wrap(
-                spacing: 4,
-                runSpacing: 4,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(
-                    icon: Brand(
-                      Brands.github,
-                    ),
+                  HoverIcon(
+                    icon: const Icon(AntDesign.github_outline),
+                    hoverIcon: Brand(Brands.github),
                     onPressed: () {},
                   ),
-                  IconButton(
-                    icon: Brand(
-                      Brands.linkedin,
-                    ),
+                  HoverIcon(
+                    icon: const Icon(AntDesign.linkedin_outline),
+                    hoverIcon: Brand(Brands.linkedin),
                     onPressed: () {},
                   ),
-                  IconButton(
-                    icon: Brand(
-                      Brands.twitterx,
-                    ),
+                  HoverIcon(
+                    icon: const Icon(AntDesign.twitter_outline),
+                    hoverIcon: Brand(Brands.twitter),
                     onPressed: () {},
                   ),
-                  IconButton(
-                    icon: Brand(
-                      Brands.facebook,
-                    ),
+                  HoverIcon(
+                    icon: const Icon(AntDesign.facebook_outline),
+                    hoverIcon: Brand(Brands.facebook),
                     onPressed: () {},
                   ),
-                  IconButton(
-                    icon: Brand(
-                      Brands.instagram,
-                    ),
+                  HoverIcon(
+                    icon: const Icon(AntDesign.instagram_outline),
+                    hoverIcon: Brand(Brands.instagram),
                     onPressed: () {},
                   ),
                 ],
               ),
               const SizedBox(height: 16),
-              ElevatedButton.icon(
-                onPressed: () {},
-                icon: const Icon(Icons.mail),
+              HoverButton(
+                icon: const Icon(EvaIcons.email),
                 label: const Text(
                   "Let's Connect!",
                   style: TextStyle(
@@ -146,66 +147,11 @@ class HomeView extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
+                onPressed: () {},
               ),
             ],
           ),
         ),
-        // Positioned.fill(
-        //   child: ContentTile(
-        //     title: "Hey there! I'm Arun Prakash",
-        //     content:
-        //         "Emerging from the picturesque terrains of Kerala, I excel in Mobile & Desktop Application Development. With proficiency in Flutter & Xamarin.Forms Frameworks, I've also engineered production-ready libraries.",
-        //     lottie: 'assets/lottie/coding.json',
-        //     subTitle: 'A Senior Software Engineer',
-        //     bottom: Column(
-        //       crossAxisAlignment: CrossAxisAlignment.start,
-        //       children: [
-        //         Wrap(
-        //           spacing: 4,
-        //           runSpacing: 4,
-        //           children: [
-        //             IconButton(
-        //               icon: Brand(
-        //                 Brands.github,
-        //               ),
-        //               onPressed: () {},
-        //             ),
-        //             IconButton(
-        //               icon: Brand(
-        //                 Brands.linkedin,
-        //               ),
-        //               onPressed: () {},
-        //             ),
-        //             IconButton(
-        //               icon: Brand(
-        //                 Brands.twitterx,
-        //               ),
-        //               onPressed: () {},
-        //             ),
-        //             IconButton(
-        //               icon: Brand(
-        //                 Brands.facebook,
-        //               ),
-        //               onPressed: () {},
-        //             ),
-        //             IconButton(
-        //               icon: Brand(
-        //                 Brands.instagram,
-        //               ),
-        //               onPressed: () {},
-        //             ),
-        //           ],
-        //         ),
-        //         const SizedBox(height: 16),
-        //         ElevatedButton.icon(
-        //           onPressed: () {},
-        //           icon: const Icon(Icons.mail),
-        //           label: const Text('Get in touch'),
-        //         ),
-        //       ],
-        //     ),
-        //   ),
-        // ),
       ],
     );
   }

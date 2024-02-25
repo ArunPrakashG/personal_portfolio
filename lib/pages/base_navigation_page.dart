@@ -34,20 +34,50 @@ class _BaseNavigationPageState extends State<BaseNavigationPage> {
       appBar: Header(
         controller: pageController,
       ),
-      body: PageView.builder(
-        scrollDirection: Axis.vertical,
-        controller: pageController,
-        itemCount: views.length,
-        scrollBehavior: const CupertinoScrollBehavior(),
-        findChildIndexCallback: (key) {
-          return views.indexWhere((view) => view.key == key);
-        },
-        itemBuilder: (context, index) {
-          return KeyedSubtree(
-            key: views[index].key,
-            child: views[index].builder(),
-          );
-        },
+      body: Stack(
+        children: [
+          PageView.builder(
+            scrollDirection: Axis.vertical,
+            controller: pageController,
+            itemCount: views.length,
+            scrollBehavior: const CupertinoScrollBehavior(),
+            findChildIndexCallback: (key) {
+              return views.indexWhere((view) => view.key == key);
+            },
+            itemBuilder: (context, index) {
+              return KeyedSubtree(
+                key: views[index].key,
+                child: views[index].builder(),
+              );
+            },
+          ),
+          Positioned(
+            right: 16,
+            bottom: 16,
+            child: Column(
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.update),
+                  onPressed: () {
+                    pageController.previousPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                    );
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.add),
+                  onPressed: () {
+                    pageController.nextPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

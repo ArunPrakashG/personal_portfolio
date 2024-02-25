@@ -25,6 +25,7 @@ class ExperianceTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final breakPointHit = MediaQuery.sizeOf(context).width < 800;
+    final isCurrent = index == 1;
 
     return FadeInLeft(
       delay: Duration(milliseconds: index * 700),
@@ -35,13 +36,18 @@ class ExperianceTile extends StatelessWidget {
         ),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: const Color(0xFF212738),
           borderRadius: BorderRadius.circular(12),
+          border: isCurrent
+              ? Border.all(
+                  color: const Color(0xFFF97068).withOpacity(0.6),
+                )
+              : null,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: const Color(0xFF212738).withOpacity(isCurrent ? 0.9 : 0.6),
               blurRadius: 8,
-              spreadRadius: 1,
+              spreadRadius: isCurrent ? 3 : 1,
               offset: const Offset(1, 2),
             ),
           ],
@@ -68,14 +74,14 @@ class ExperianceTile extends StatelessWidget {
                           role,
                           style: GoogleFonts.poppins(
                             fontSize: 16,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                         Text(
                           date,
                           style: GoogleFonts.poppins(
                             fontSize: 16,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ],
@@ -86,7 +92,7 @@ class ExperianceTile extends StatelessWidget {
                     role,
                     style: GoogleFonts.poppins(
                       fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w400,
                     ),
                   );
                 },
@@ -96,20 +102,30 @@ class ExperianceTile extends StatelessWidget {
                       date,
                       style: GoogleFonts.poppins(
                         fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w500,
                       ),
                     )
                   : null,
             ),
             const Divider(),
-            Text(
-              description,
-              style: GoogleFonts.poppins(
-                fontSize: 14,
+            if (description.isNotEmpty)
+              Text(
+                description,
+                style: GoogleFonts.poppins(
+                  fontSize: 14,
+                ),
               ),
-            ),
             BulletedList(
               listItems: learnedItems,
+              bullet: const Icon(
+                Icons.arrow_right,
+                color: Color(0xFFF97068),
+                size: 26,
+              ),
+              style: const TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+              ),
             ),
           ],
         ),

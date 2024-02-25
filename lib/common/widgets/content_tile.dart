@@ -70,6 +70,7 @@ class ContentTile extends StatelessWidget {
                       style: GoogleFonts.poppins(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                       child: AnimatedTextKit(
                         // ignore: avoid_redundant_argument_values
@@ -125,10 +126,12 @@ class ContentTile extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
                   child: AnimatedTextKit(
                     // ignore: avoid_redundant_argument_values
                     isRepeatingAnimation: kDebugMode,
+
                     animatedTexts: [
                       TypewriterAnimatedText(
                         title,
