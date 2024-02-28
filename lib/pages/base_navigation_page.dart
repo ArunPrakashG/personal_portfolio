@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:preload_page_view/preload_page_view.dart';
 
 import '../common/widgets/header.dart';
 import '../routes.dart';
@@ -15,7 +16,7 @@ class BaseNavigationPage extends StatefulWidget {
 }
 
 class _BaseNavigationPageState extends State<BaseNavigationPage> {
-  final pageController = PageController();
+  final pageController = PreloadPageController();
   bool displayFooter = true;
 
   @override
@@ -54,14 +55,16 @@ class _BaseNavigationPageState extends State<BaseNavigationPage> {
       body: Stack(
         children: [
           Positioned.fill(
-            child: PageView.builder(
+            child: PreloadPageView.builder(
               scrollDirection: Axis.vertical,
               controller: pageController,
               itemCount: views.length,
-              scrollBehavior: const CupertinoScrollBehavior(),
-              findChildIndexCallback: (key) {
-                return views.indexWhere((view) => view.key == key);
-              },
+
+              preloadPagesCount: 3,
+              // scrollBehavior: const CupertinoScrollBehavior(),
+              // findChildIndexCallback: (key) {
+              //   return views.indexWhere((view) => view.key == key);
+              // },
               itemBuilder: (context, index) {
                 return KeyedSubtree(
                   key: views[index].key,
@@ -117,7 +120,10 @@ class _BaseNavigationPageState extends State<BaseNavigationPage> {
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(
-      DiagnosticsProperty<PageController>('pageController', pageController),
+      DiagnosticsProperty<PreloadPageController>(
+        'pageController',
+        pageController,
+      ),
     );
     properties.add(DiagnosticsProperty<bool>('displayFooter', displayFooter));
   }

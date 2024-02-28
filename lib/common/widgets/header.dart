@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:preload_page_view/preload_page_view.dart';
 
 import '../../routes.dart';
 
@@ -10,7 +11,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
     super.key,
   });
 
-  final PageController controller;
+  final PreloadPageController controller;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -126,8 +127,8 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty<PageController>('controller', controller));
+    properties.add(
+        DiagnosticsProperty<PreloadPageController>('controller', controller));
   }
 
   void _onLogoTapped() {

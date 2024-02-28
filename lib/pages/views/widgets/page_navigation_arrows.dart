@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:preload_page_view/preload_page_view.dart';
 
 import '../../../routes.dart';
 
@@ -11,7 +12,7 @@ class PageNavigationArrows extends StatefulWidget {
     super.key,
   });
 
-  final PageController controller;
+  final PreloadPageController controller;
 
   @override
   State<PageNavigationArrows> createState() => _PageNavigationArrowsState();
@@ -19,8 +20,8 @@ class PageNavigationArrows extends StatefulWidget {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty<PageController>('controller', controller));
+    properties.add(
+        DiagnosticsProperty<PreloadPageController>('controller', controller));
   }
 }
 
