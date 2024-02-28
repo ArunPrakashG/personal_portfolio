@@ -15,7 +15,7 @@ class ExperienceView extends StatelessWidget {
           child: ContentTile(
             title: 'Experience',
             content: myExperience,
-            lottie: 'assets/lottie/experience.json',
+            lottie: 'assets/images/experience.png',
             bottom: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [

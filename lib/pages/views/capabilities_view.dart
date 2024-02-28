@@ -15,7 +15,7 @@ class CapabilitiesView extends StatelessWidget {
             title: 'Capabilities',
             content:
                 'Innovative programmer with a passion for problem-solving and creativity. Dedicated to excellence, I view programming as an art form and thrive on challenges. Specializing in tackling complex problems, I aim to exceed expectations with every project.',
-            lottie: 'assets/lottie/capabilities.json',
+            lottie: 'assets/images/capabilities.png',
             bottom: Wrap(
               spacing: 8,
               runSpacing: 6,

@@ -39,6 +39,11 @@ class ContentTile extends StatelessWidget {
               ),
               padding: const EdgeInsets.all(8),
               child: () {
+                return Image.asset(
+                  lottie,
+                  fit: BoxFit.fitWidth,
+                );
+
                 if (isUrl(lottie)) {
                   return Lottie.network(
                     lottie,
@@ -171,6 +176,11 @@ class ContentTile extends StatelessWidget {
           ),
           padding: const EdgeInsets.all(32),
           child: () {
+            return Image.asset(
+              lottie,
+              fit: BoxFit.fitWidth,
+            );
+
             if (isUrl(lottie)) {
               return Lottie.network(
                 lottie,

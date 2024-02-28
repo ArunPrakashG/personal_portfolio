@@ -15,7 +15,7 @@ class ProjectsView extends StatelessWidget {
             title: 'Projects',
             content:
                 "I have worked on a variety of projects, from mobile apps to VR experiences. Most of them are open source and available on my GitHub. I am always looking for new projects to work on, so if you have an idea, let's talk!",
-            lottie: 'assets/lottie/projects.json',
+            lottie: 'assets/images/projects.png',
             bottom: Column(
               children: [
                 ProjectTile(
