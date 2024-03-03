@@ -44,6 +44,7 @@ class ContentTile extends StatelessWidget {
                   fit: BoxFit.fitWidth,
                 );
 
+                // Lottie causes performence issues on the web
                 if (isUrl(lottie)) {
                   return Lottie.network(
                     lottie,
