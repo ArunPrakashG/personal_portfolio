@@ -21,7 +21,8 @@ class PageNavigationArrows extends StatefulWidget {
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(
-        DiagnosticsProperty<PreloadPageController>('controller', controller));
+      DiagnosticsProperty<PreloadPageController>('controller', controller),
+    );
   }
 }
 

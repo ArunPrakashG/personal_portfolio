@@ -128,7 +128,8 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(
-        DiagnosticsProperty<PreloadPageController>('controller', controller));
+      DiagnosticsProperty<PreloadPageController>('controller', controller),
+    );
   }
 
   void _onLogoTapped() {
