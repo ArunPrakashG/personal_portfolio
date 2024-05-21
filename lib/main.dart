@@ -64,7 +64,10 @@ class MainApp extends StatelessWidget {
         title: "Arun's Portfolio",
         theme: lightTheme,
         darkTheme: darkTheme,
-        home: const BaseNavigationPage(),
+        home: ScrollConfiguration(
+          behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+          child: const BaseNavigationPage(),
+        ),
       ),
     );
   }
