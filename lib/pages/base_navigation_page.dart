@@ -58,12 +58,8 @@ class _BaseNavigationPageState extends State<BaseNavigationPage> {
               scrollDirection: Axis.vertical,
               controller: pageController,
               itemCount: views.length,
-
+              pageSnapping: false,
               preloadPagesCount: 3,
-              // scrollBehavior: const CupertinoScrollBehavior(),
-              // findChildIndexCallback: (key) {
-              //   return views.indexWhere((view) => view.key == key);
-              // },
               itemBuilder: (context, index) {
                 return KeyedSubtree(
                   key: views[index].key,
