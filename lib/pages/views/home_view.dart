@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,7 +10,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../common/widgets/hover_button.dart';
 import '../../common/widgets/hover_icon.dart';
 import 'providers/app_init_provider.dart';
-import 'providers/image_size_provider.dart';
 import 'providers/quotes_provider.dart';
 
 class HomeView extends StatelessWidget {
@@ -16,13 +17,6 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final devImage = Image.asset(
-      'assets/images/developer.jpg',
-      fit: BoxFit.cover,
-      filterQuality: FilterQuality.high,
-      isAntiAlias: true,
-    );
-
     return Stack(
       children: [
         Positioned(
@@ -67,44 +61,6 @@ class HomeView extends StatelessWidget {
             },
           ),
         ),
-        Positioned(
-          top: 0,
-          right: 0,
-          bottom: 0,
-          child: Consumer(
-            builder: (context, ref, child) {
-              final imageSize = ref.watch(imageSizeProvider(devImage));
-
-              return AnimatedSwitcher(
-                duration: const Duration(milliseconds: 500),
-                child: imageSize.maybeWhen(
-                  data: (size) {
-                    return Container(
-                      transform: Matrix4.translationValues(
-                        _getImageTranslationValue(context, size),
-                        0,
-                        0,
-                      ),
-                      foregroundDecoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0xFF001524),
-                            Colors.transparent,
-                          ],
-                        ),
-                        border: Border.fromBorderSide(
-                          BorderSide.none,
-                        ),
-                      ),
-                      child: devImage,
-                    );
-                  },
-                  orElse: () => const SizedBox.shrink(),
-                ),
-              );
-            },
-          ),
-        ),
         Positioned.fill(
           top: 24,
           left: 24,
@@ -113,6 +69,10 @@ class HomeView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const CircleAvatar(
+                radius: 80,
+                foregroundImage: AssetImage('assets/images/developer.jpg'),
+              ),
               const Text.rich(
                 TextSpan(
                   text: 'Hey there!\n',
@@ -270,26 +230,18 @@ class HomeView extends StatelessWidget {
     launchUrl(Uri.parse(url));
   }
 
-  void _onContactTapped() {
-    final emailLaunchUri = Uri(
-      scheme: 'mailto',
-      path: 'arun.prakash.456789@gmail.com',
-    );
+  Future<void> _onContactTapped() async {
+    final emailLaunchUri = Uri.tryParse('mailto:arun.prakash.456789@gmail.com');
 
-    launchUrl(emailLaunchUri);
-  }
+    if (emailLaunchUri == null) {
+      return;
+    }
 
-  double _getImageTranslationValue(BuildContext context, ImageSize size) {
-    final imageHalf = size.width / 2.1;
-    final screenHeight = MediaQuery.sizeOf(context).height;
-    final variation = () {
-      if (screenHeight < 600) {
-        return (600 - screenHeight).clamp(1, 50);
-      } else {
-        return 0;
-      }
-    }();
+    if (!await canLaunchUrl(emailLaunchUri)) {
+      log('Could not launch $emailLaunchUri');
+      return;
+    }
 
-    return imageHalf * (screenHeight / (size.height + variation));
+    await launchUrl(emailLaunchUri);
   }
 }

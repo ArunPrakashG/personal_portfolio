@@ -1,2 +1,2 @@
-& flutter build web --release --web-renderer "canvaskit" | Out-Null
+& flutter build web --release --wasm | Out-Null
 & firebase deploy

@@ -2,9 +2,6 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
-
-import '../../helpers.dart';
 
 class ContentTile extends StatelessWidget {
   const ContentTile({
@@ -42,27 +39,6 @@ class ContentTile extends StatelessWidget {
                 return Image.asset(
                   lottie,
                   fit: BoxFit.fitWidth,
-                );
-
-                // Lottie causes performence issues on the web
-                if (isUrl(lottie)) {
-                  return Lottie.network(
-                    lottie,
-                    fit: BoxFit.fitWidth,
-                    repeat: true,
-                    renderCache: RenderCache.drawingCommands,
-                    frameRate: const FrameRate(60),
-                    backgroundLoading: true,
-                  );
-                }
-
-                return Lottie.asset(
-                  lottie,
-                  fit: BoxFit.fitWidth,
-                  repeat: true,
-                  renderCache: RenderCache.drawingCommands,
-                  frameRate: const FrameRate(60),
-                  backgroundLoading: true,
                 );
               }(),
             ),
@@ -180,20 +156,6 @@ class ContentTile extends StatelessWidget {
             return Image.asset(
               lottie,
               fit: BoxFit.fitWidth,
-            );
-
-            if (isUrl(lottie)) {
-              return Lottie.network(
-                lottie,
-                fit: BoxFit.fitWidth,
-                repeat: true,
-              );
-            }
-
-            return Lottie.asset(
-              lottie,
-              fit: BoxFit.fitWidth,
-              repeat: true,
             );
           }(),
         ),

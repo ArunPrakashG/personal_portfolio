@@ -49,20 +49,20 @@ class _HoverButtonState extends State<HoverButton> {
           });
         },
         style: ButtonStyle(
-          shape: MaterialStateProperty.all(
+          shape: WidgetStateProperty.all(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(24),
             ),
           ),
-          backgroundColor: MaterialStateProperty.all(
+          backgroundColor: WidgetStateProperty.all(
             Colors.white,
           ),
           splashFactory: InkRipple.splashFactory,
-          surfaceTintColor: MaterialStateProperty.all(Colors.white),
-          overlayColor: MaterialStateProperty.all(const Color(0xFFF97068)),
-          foregroundColor: MaterialStateProperty.resolveWith(
+          surfaceTintColor: WidgetStateProperty.all(Colors.white),
+          overlayColor: WidgetStateProperty.all(const Color(0xFFF97068)),
+          foregroundColor: WidgetStateProperty.resolveWith(
             (states) {
-              if (states.contains(MaterialState.hovered)) {
+              if (states.contains(WidgetState.hovered)) {
                 return Colors.white;
               }
 
