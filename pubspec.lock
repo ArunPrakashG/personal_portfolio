@@ -433,14 +433,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.7.4"
-  preload_page_view:
-    dependency: "direct main"
-    description:
-      name: preload_page_view
-      sha256: "488a10c158c5c2e9ba9d77e5dbc09b1e49e37a20df2301e5ba02992eac802b7a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.0"
   riverpod:
     dependency: transitive
     description:
@@ -449,14 +441,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.5.1"
-  simple_shadow:
+  scroll_to_index:
     dependency: "direct main"
     description:
-      name: simple_shadow
-      sha256: "0c0872b2baffaf12fc91416643785a88081120bac61d704f3f9dbd7e712360fa"
+      name: scroll_to_index
+      sha256: b707546e7500d9f070d63e5acf74fd437ec7eeeb68d3412ef7b0afada0b4f176
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.1"
+    version: "3.0.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -646,14 +638,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.0"
-  web_smooth_scroll:
-    dependency: "direct main"
-    description:
-      name: web_smooth_scroll
-      sha256: "2a4adc22e42e4045f02ecc1598885bf46adbe7ed9b05aab0a0f5df9ed071e9b6"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
   win32:
     dependency: transitive
     description:

@@ -17,39 +17,171 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Positioned(
-          left: 12,
-          top: 12,
-          height: 80,
-          child: Consumer(
+    return Padding(
+      padding: const EdgeInsets.all(24),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Stack(
+            children: [
+              const CircleAvatar(
+                radius: 80,
+                foregroundImage: AssetImage('assets/images/developer.jpg'),
+              ),
+              Positioned.fill(
+                child: Consumer(
+                  builder: (context, ref, child) {
+                    return ref.watch(appInitProvider).maybeWhen(
+                      loading: () {
+                        return ZoomIn(
+                          child: const CircularProgressIndicator(),
+                        );
+                      },
+                      orElse: () {
+                        return const SizedBox.shrink();
+                      },
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+          const Text.rich(
+            TextSpan(
+              text: 'Hey there!\n',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+              children: [
+                TextSpan(
+                  text: "I'm",
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                TextSpan(
+                  text: ' Arun Prakash\n',
+                  style: TextStyle(
+                    fontSize: 42,
+                    color: Colors.blue,
+                    fontWeight: FontWeight.w800,
+                    shadows: [
+                      BoxShadow(
+                        color: Colors.blueAccent,
+                        blurRadius: 8,
+                        spreadRadius: 6,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                ),
+                TextSpan(
+                  text: 'A Senior Software Engineer',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              HoverIcon(
+                icon: const Icon(AntDesign.github_outline),
+                hoverIcon: Brand(Brands.github),
+                onPressed: () => _launchSocialMediaUrl(
+                  'https://github.com/ArunPrakashG',
+                ),
+              ),
+              HoverIcon(
+                icon: const Icon(AntDesign.linkedin_outline),
+                hoverIcon: Brand(Brands.linkedin),
+                onPressed: () => _launchSocialMediaUrl(
+                  'https://www.linkedin.com/in/arunprakashg/',
+                ),
+              ),
+              HoverIcon(
+                icon: const Icon(AntDesign.twitter_outline),
+                hoverIcon: Brand(Brands.twitter),
+                onPressed: () => _launchSocialMediaUrl(
+                  'https://twitter.com/_arunprakash_',
+                ),
+              ),
+              HoverIcon(
+                icon: const Icon(AntDesign.facebook_outline),
+                hoverIcon: Brand(Brands.facebook),
+                onPressed: () => _launchSocialMediaUrl(
+                  'https://www.facebook.com/arunprakash.i/',
+                ),
+              ),
+              HoverIcon(
+                icon: const Icon(AntDesign.instagram_outline),
+                hoverIcon: Brand(Brands.instagram),
+                onPressed: () => _launchSocialMediaUrl(
+                  'https://www.instagram.com/i.arunprakash',
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          HoverButton(
+            icon: const Icon(EvaIcons.email),
+            label: const Text(
+              "Let's Connect!",
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            onPressed: _onContactTapped,
+          ),
+          Consumer(
             builder: (context, ref, child) {
-              return ref.watch(appInitProvider).maybeWhen(
-                loading: () {
-                  return FadeInLeft(
-                    child: Material(
-                      borderRadius: BorderRadius.circular(12),
-                      child: const Padding(
-                        padding: EdgeInsets.all(12),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
+              return ref.watch(quotesProvider).maybeWhen(
+                data: (data) {
+                  return FadeInUp(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 18,
+                        horizontal: 12,
+                      ),
+                      child: Text.rich(
+                        TextSpan(
+                          text: '“',
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w500,
+                          ),
                           children: [
-                            SizedBox(
-                              width: 16,
-                              height: 16,
-                              child: CircularProgressIndicator(),
-                            ),
-                            SizedBox(width: 12),
-                            Text(
-                              'Caching assets...',
-                              style: TextStyle(
+                            TextSpan(
+                              text: data.content,
+                              style: const TextStyle(
                                 fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            const TextSpan(
+                              text: '”',
+                              style: TextStyle(
+                                fontSize: 24,
                                 fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            TextSpan(
+                              text: ' - ${data.author}',
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
                               ),
                             ),
                           ],
                         ),
+                        style: GoogleFonts.arimo(),
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   );
@@ -60,169 +192,8 @@ class HomeView extends StatelessWidget {
               );
             },
           ),
-        ),
-        Positioned.fill(
-          top: 24,
-          left: 24,
-          right: 24,
-          bottom: 24,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const CircleAvatar(
-                radius: 80,
-                foregroundImage: AssetImage('assets/images/developer.jpg'),
-              ),
-              const Text.rich(
-                TextSpan(
-                  text: 'Hey there!\n',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: "I'm",
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    TextSpan(
-                      text: ' Arun Prakash\n',
-                      style: TextStyle(
-                        fontSize: 42,
-                        color: Colors.blue,
-                        fontWeight: FontWeight.w800,
-                        shadows: [
-                          BoxShadow(
-                            color: Colors.blueAccent,
-                            blurRadius: 8,
-                            spreadRadius: 6,
-                            offset: Offset(0, 2),
-                          ),
-                        ],
-                      ),
-                    ),
-                    TextSpan(
-                      text: 'A Senior Software Engineer',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  HoverIcon(
-                    icon: const Icon(AntDesign.github_outline),
-                    hoverIcon: Brand(Brands.github),
-                    onPressed: () => _launchSocialMediaUrl(
-                      'https://github.com/ArunPrakashG',
-                    ),
-                  ),
-                  HoverIcon(
-                    icon: const Icon(AntDesign.linkedin_outline),
-                    hoverIcon: Brand(Brands.linkedin),
-                    onPressed: () => _launchSocialMediaUrl(
-                      'https://www.linkedin.com/in/arunprakashg/',
-                    ),
-                  ),
-                  HoverIcon(
-                    icon: const Icon(AntDesign.twitter_outline),
-                    hoverIcon: Brand(Brands.twitter),
-                    onPressed: () => _launchSocialMediaUrl(
-                      'https://twitter.com/_arunprakash_',
-                    ),
-                  ),
-                  HoverIcon(
-                    icon: const Icon(AntDesign.facebook_outline),
-                    hoverIcon: Brand(Brands.facebook),
-                    onPressed: () => _launchSocialMediaUrl(
-                      'https://www.facebook.com/arunprakash.i/',
-                    ),
-                  ),
-                  HoverIcon(
-                    icon: const Icon(AntDesign.instagram_outline),
-                    hoverIcon: Brand(Brands.instagram),
-                    onPressed: () => _launchSocialMediaUrl(
-                      'https://www.instagram.com/i.arunprakash',
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              HoverButton(
-                icon: const Icon(EvaIcons.email),
-                label: const Text(
-                  "Let's Connect!",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                onPressed: _onContactTapped,
-              ),
-              Consumer(
-                builder: (context, ref, child) {
-                  return ref.watch(quotesProvider).maybeWhen(
-                    data: (data) {
-                      return FadeInUp(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 18,
-                            horizontal: 12,
-                          ),
-                          child: Text.rich(
-                            TextSpan(
-                              text: '“',
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: data.content,
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                const TextSpan(
-                                  text: '”',
-                                  style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: ' - ${data.author}',
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            style: GoogleFonts.arimo(),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      );
-                    },
-                    orElse: () {
-                      return const SizedBox.shrink();
-                    },
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
