@@ -1,11 +1,9 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:preload_page_view/preload_page_view.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 
 import '../common/widgets/header.dart';
 import '../routes.dart';
-import 'views/widgets/page_navigation_arrows.dart';
 
 class BaseNavigationPage extends StatefulWidget {
   const BaseNavigationPage({super.key});
@@ -15,33 +13,15 @@ class BaseNavigationPage extends StatefulWidget {
 }
 
 class _BaseNavigationPageState extends State<BaseNavigationPage> {
-  final pageController = PreloadPageController();
-  bool displayFooter = true;
-
-  @override
-  void initState() {
-    super.initState();
-
-    pageController.addListener(_shouldDisplayFooter);
-  }
-
-  void _shouldDisplayFooter() {
-    if (pageController.page == 0 || pageController.page == null) {
-      setState(() {
-        displayFooter = true;
-      });
-    } else {
-      setState(() {
-        displayFooter = false;
-      });
-    }
-  }
+  final AutoScrollController scrollController = AutoScrollController(
+    axis: Axis.vertical,
+  );
 
   @override
   void dispose() {
     super.dispose();
 
-    pageController.dispose();
+    scrollController.dispose();
   }
 
   @override
@@ -49,64 +29,66 @@ class _BaseNavigationPageState extends State<BaseNavigationPage> {
     return Scaffold(
       backgroundColor: const Color(0xFF001524),
       appBar: Header(
-        controller: pageController,
+        controller: scrollController,
       ),
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: PreloadPageView.builder(
-              scrollDirection: Axis.vertical,
-              controller: pageController,
-              itemCount: views.length,
-              pageSnapping: false,
-              preloadPagesCount: 3,
-              itemBuilder: (context, index) {
-                return KeyedSubtree(
-                  key: views[index].key,
-                  child: views[index].builder(),
-                );
-              },
-            ),
-          ),
-          Positioned(
-            right: 18,
-            bottom: 44,
-            child: PageNavigationArrows(
-              controller: pageController,
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Visibility(
-              visible: displayFooter,
-              child: FadeInUp(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 8,
-                    horizontal: 4,
+      body: SingleChildScrollView(
+        controller: scrollController,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ...views
+                .map(
+                  (view) => AutoScrollTag(
+                    key: view.key,
+                    controller: scrollController,
+                    index: view.index,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 52),
+                      child: view.builder(),
+                    ),
                   ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF222E50).withOpacity(0.2),
+                )
+                .toList(),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                vertical: 8,
+                horizontal: 4,
+              ),
+              decoration: BoxDecoration(
+                color: const Color(0xFF222E50).withOpacity(0.2),
+              ),
+              child: const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Made with ❤️ by Arun Prakash using Flutter & Dart',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
                   ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Made with ❤️ by Arun Prakash using Flutter & Dart',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
+                  Text(
+                    'This website is powered by the most recent Flutter build. Please note that Flutter Web is currently in its developmental phase.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                    ),
                   ),
-                ),
+                  Text(
+                    'This project primarily serves as an exploration into optimizing Flutter web applications. As such, occasional crashes and bugs may occur.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -115,11 +97,10 @@ class _BaseNavigationPageState extends State<BaseNavigationPage> {
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(
-      DiagnosticsProperty<PreloadPageController>(
-        'pageController',
-        pageController,
+      DiagnosticsProperty<AutoScrollController>(
+        'scrollController',
+        scrollController,
       ),
     );
-    properties.add(DiagnosticsProperty<bool>('displayFooter', displayFooter));
   }
 }

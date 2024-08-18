@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:preload_page_view/preload_page_view.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 
 import '../../routes.dart';
 
@@ -11,7 +11,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
     super.key,
   });
 
-  final PreloadPageController controller;
+  final AutoScrollController controller;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -82,11 +82,11 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  void _onPageButtonTapped(AppView view) {
-    controller.animateToPage(
+  Future<void> _onPageButtonTapped(AppView view) async {
+    await controller.scrollToIndex(
       view.index,
       duration: const Duration(milliseconds: 500),
-      curve: Curves.easeInOut,
+      preferPosition: AutoScrollPosition.begin,
     );
   }
 
@@ -128,15 +128,15 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(
-      DiagnosticsProperty<PreloadPageController>('controller', controller),
+      DiagnosticsProperty<AutoScrollController>('controller', controller),
     );
   }
 
-  void _onLogoTapped() {
-    controller.animateToPage(
+  Future<void> _onLogoTapped() async {
+    await controller.scrollToIndex(
       0,
       duration: const Duration(milliseconds: 500),
-      curve: Curves.easeInOut,
+      preferPosition: AutoScrollPosition.begin,
     );
   }
 }
