@@ -9,7 +9,7 @@ class CapabilitiesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const ContentView(
-      title: 'Capabilities',
+      title: 'About',
       content:
           'Innovative engineer with a passion for problem-solving and creativity. Dedicated to excellence, I view programming as an art form and thrive on challenges. Specializing in tackling complex problems, I aim to exceed expectations with every project.',
       lottie: 'assets/images/capabilities.png',

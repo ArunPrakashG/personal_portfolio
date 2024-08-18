@@ -27,7 +27,6 @@ class _BaseNavigationPageState extends State<BaseNavigationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF001524),
       appBar: Header(
         controller: scrollController,
       ),

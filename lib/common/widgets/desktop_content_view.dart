@@ -21,54 +21,37 @@ class DesktopContentView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          child: ListTile(
-            title: DefaultTextStyle(
-              style: GoogleFonts.poppins(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-              child: AnimatedTextKit(
-                animatedTexts: [
-                  TypewriterAnimatedText(
-                    title,
-                    textAlign: TextAlign.left,
-                    speed: const Duration(milliseconds: 100),
-                  ),
-                ],
-              ),
+    return ListTile(
+      title: DefaultTextStyle(
+        style: GoogleFonts.poppins(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+        ),
+        child: AnimatedTextKit(
+          animatedTexts: [
+            TypewriterAnimatedText(
+              title,
+              textAlign: TextAlign.left,
+              speed: const Duration(milliseconds: 100),
             ),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  content,
-                  style: GoogleFonts.poppins(
-                    fontSize: 14,
-                  ),
-                ),
-                if (bottom != null) ...[
-                  const SizedBox(height: 16),
-                  bottom!,
-                ],
-              ],
+          ],
+        ),
+      ),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            content,
+            style: GoogleFonts.poppins(
+              fontSize: 14,
             ),
           ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          height: MediaQuery.of(context).size.width / 3,
-          width: MediaQuery.of(context).size.width / 3,
-          child: Image.asset(
-            imageUrl,
-            fit: BoxFit.fitWidth,
-          ),
-        ),
-      ],
+          if (bottom != null) ...[
+            const SizedBox(height: 16),
+            bottom!,
+          ],
+        ],
+      ),
     );
   }
 

@@ -37,7 +37,6 @@ class MobileContentView extends StatelessWidget {
             style: GoogleFonts.poppins(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
             ),
             child: AnimatedTextKit(
               animatedTexts: [

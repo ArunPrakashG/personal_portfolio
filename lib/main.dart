@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'app_theme.dart';
 import 'pages/base_navigation_page.dart';
 
 void main() {
@@ -62,8 +61,8 @@ class MainApp extends StatelessWidget {
       child: MaterialApp(
         themeMode: ThemeMode.dark,
         title: "Arun's Portfolio",
-        theme: lightTheme,
-        darkTheme: darkTheme,
+        // theme: lightTheme,
+        // darkTheme: darkTheme,
         home: ScrollConfiguration(
           behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
           child: const BaseNavigationPage(),

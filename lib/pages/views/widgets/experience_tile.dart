@@ -36,21 +36,12 @@ class ExperianceTile extends StatelessWidget {
         ),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: const Color(0xFF212738),
           borderRadius: BorderRadius.circular(12),
           border: isCurrent
               ? Border.all(
                   color: const Color(0xFFF97068).withOpacity(0.6),
                 )
               : null,
-          boxShadow: [
-            BoxShadow(
-              color: const Color(0xFF212738).withOpacity(isCurrent ? 0.9 : 0.6),
-              blurRadius: 8,
-              spreadRadius: isCurrent ? 3 : 1,
-              offset: const Offset(1, 2),
-            ),
-          ],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,7 +115,6 @@ class ExperianceTile extends StatelessWidget {
               ),
               style: const TextStyle(
                 fontSize: 16,
-                color: Colors.white,
               ),
             ),
           ],
