@@ -1,4 +1,3 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,30 +21,36 @@ class DesktopContentView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: DefaultTextStyle(
-        style: GoogleFonts.poppins(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
+      contentPadding: EdgeInsets.zero,
+      title: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 12,
+          vertical: 8,
         ),
-        child: AnimatedTextKit(
-          animatedTexts: [
-            TypewriterAnimatedText(
-              title,
-              textAlign: TextAlign.left,
-              speed: const Duration(milliseconds: 100),
-            ),
-          ],
+        child: Text(
+          title,
+          style: GoogleFonts.poppins(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            content,
-            style: GoogleFonts.poppins(
-              fontSize: 14,
+          if (content.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 8,
+              ),
+              child: Text(
+                content,
+                style: GoogleFonts.poppins(
+                  fontSize: 14,
+                ),
+              ),
             ),
-          ),
           if (bottom != null) ...[
             const SizedBox(height: 16),
             bottom!,

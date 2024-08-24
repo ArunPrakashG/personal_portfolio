@@ -10,7 +10,7 @@ class ExperienceView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const ContentView(
-      title: 'Experience',
+      title: 'Work Experience',
       content: myExperience,
       lottie: 'assets/images/experience.png',
       bottom: Column(
@@ -20,26 +20,18 @@ class ExperienceView extends StatelessWidget {
             role: 'Senior Software Engineer',
             date: '2023 - Present',
             index: 1,
-            learnedItems: [
-              'Worked on custom bootstrapper CLI internal tool, which helped simplify various repetitive tasks and boosted productivity.',
-              'Developed Oculus Quest and Pico G4 VR applications using Unity',
-              'Had the opportunity to work on Go - Echo based backend project.',
-              'Earned App Development with Swift - Certified User Certificate from Apple Inc.',
-            ],
-            description: '',
+            learnedItems: [],
+            description:
+                'I gained experience in mobile, web, and VR development, including creating internal tools to improve team workflows. I developed VR applications for Oculus Quest and Pico G4 using Unity, and enhanced my iOS development skills through the App Development with Swift - Associate certification from Apple Inc.',
           ),
           ExperianceTile(
             companyName: 'White Rabbit Group',
             role: 'Software Engineer',
             date: '2021 - 2023',
             index: 2,
-            learnedItems: [
-              'Worked on a variety of projects including mobile, web, and VR applications.',
-              'Worked on variety of internal tools for time tracking and bug report generation which assisted various teams to work efficiently.',
-              'Developed Oculus Quest and Pico G4 VR applications using Unity',
-              'Earned App Development with Swift - Associate from Apple Inc.',
-            ],
-            description: '',
+            learnedItems: [],
+            description:
+                'Worked on mobile, web, and VR projects, including developing internal tools for time tracking and bug reporting to enhance team efficiency. Developed VR applications for Oculus Quest and Pico G4 using Unity. Earned the App Development with Swift - Associate certification from Apple Inc.',
           ),
           ExperianceTile(
             companyName: 'Freelance',
