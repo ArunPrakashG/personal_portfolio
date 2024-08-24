@@ -25,7 +25,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
       ),
       height: preferredSize.height,
       decoration: BoxDecoration(
-        color: const Color(0xFF222E50),
+        color: Colors.white,
         boxShadow: [
           BoxShadow(
             color: Colors.blue.withOpacity(0.1),

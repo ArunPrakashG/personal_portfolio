@@ -1,5 +1,3 @@
-import 'package:animate_do/animate_do.dart';
-import 'package:bulleted_list/bulleted_list.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,112 +22,48 @@ class ExperianceTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final breakPointHit = MediaQuery.sizeOf(context).width < 800;
-    final isCurrent = index == 1;
-
-    return FadeInLeft(
-      delay: Duration(milliseconds: index * 700),
-      child: Container(
-        margin: const EdgeInsets.symmetric(
-          vertical: 12,
-          horizontal: 4,
-        ),
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: const Color(0xFF212738),
-          borderRadius: BorderRadius.circular(12),
-          border: isCurrent
-              ? Border.all(
-                  color: const Color(0xFFF97068).withOpacity(0.6),
-                )
-              : null,
-          boxShadow: [
-            BoxShadow(
-              color: const Color(0xFF212738).withOpacity(isCurrent ? 0.9 : 0.6),
-              blurRadius: 8,
-              spreadRadius: isCurrent ? 3 : 1,
-              offset: const Offset(1, 2),
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(
-                companyName,
-                style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              subtitle: Builder(
-                builder: (context) {
-                  if (breakPointHit) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text(
-                          role,
-                          style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        Text(
-                          date,
-                          style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    );
-                  }
-
-                  return Text(
-                    role,
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  );
-                },
-              ),
-              trailing: !breakPointHit
-                  ? Text(
-                      date,
-                      style: GoogleFonts.poppins(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    )
-                  : null,
-            ),
-            const Divider(),
-            if (description.isNotEmpty)
-              Text(
-                description,
-                style: GoogleFonts.poppins(
-                  fontSize: 14,
-                ),
-              ),
-            BulletedList(
-              listItems: learnedItems,
-              bullet: const Icon(
-                Icons.arrow_right,
-                color: Color(0xFFF97068),
-                size: 26,
-              ),
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.white,
-              ),
-            ),
-          ],
+    return ExpansionTile(
+      tilePadding: const EdgeInsets.symmetric(
+        horizontal: 12,
+        vertical: 8,
+      ),
+      childrenPadding: const EdgeInsets.symmetric(
+        horizontal: 12,
+        vertical: 8,
+      ),
+      title: Text(
+        companyName,
+        style: GoogleFonts.poppins(
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
         ),
       ),
+      subtitle: Text(
+        role,
+        style: GoogleFonts.poppins(
+          fontSize: 14,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
+      shape: Border.all(color: Colors.transparent),
+      collapsedShape: Border.all(color: Colors.transparent),
+      trailing: Text(
+        date,
+        style: GoogleFonts.poppins(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      controlAffinity: ListTileControlAffinity.leading,
+      children: [
+        Text(
+          description,
+          style: GoogleFonts.poppins(
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      ],
     );
   }
 

@@ -27,7 +27,6 @@ class _BaseNavigationPageState extends State<BaseNavigationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF001524),
       appBar: Header(
         controller: scrollController,
       ),
@@ -54,8 +53,8 @@ class _BaseNavigationPageState extends State<BaseNavigationPage> {
                 vertical: 8,
                 horizontal: 4,
               ),
-              decoration: BoxDecoration(
-                color: const Color(0xFF222E50).withOpacity(0.2),
+              decoration: const BoxDecoration(
+                color: Colors.black45,
               ),
               child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,

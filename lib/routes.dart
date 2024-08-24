@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
-import 'pages/views/capabilities_view.dart';
+import 'pages/views/about_me_view.dart';
+import 'pages/views/education_view.dart';
 import 'pages/views/experience_view.dart';
 import 'pages/views/home_view.dart';
 import 'pages/views/projects_view.dart';
@@ -23,7 +24,8 @@ class AppView {
 
 List<AppView> views = [
   AppView('Home', 0, () => const HomeView()),
-  AppView('Capabilities', 1, () => const CapabilitiesView()),
-  AppView('Experience', 2, () => const ExperienceView()),
-  AppView('Projects', 3, () => const ProjectsView()),
+  AppView('About Me', 1, () => const AboutMeView()),
+  AppView('Education', 2, () => const EducationView()),
+  AppView('Work Experience', 3, () => const ExperienceView()),
+  AppView('Projects', 4, () => const ProjectsView()),
 ];

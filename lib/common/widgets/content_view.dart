@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 import 'desktop_content_view.dart';
-import 'mobile_content_view.dart';
 
 class ContentView extends StatelessWidget {
   const ContentView({
@@ -21,15 +21,15 @@ class ContentView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery.sizeOf(context).width < 800) {
-      return MobileContentView(
-        title: title,
-        subTitle: subTitle,
-        content: content,
-        imageUrl: lottie,
-        bottom: bottom,
-      );
-    }
+    // if (MediaQuery.sizeOf(context).width < 800) {
+    //   return MobileContentView(
+    //     title: title,
+    //     subTitle: subTitle,
+    //     content: content,
+    //     imageUrl: lottie,
+    //     bottom: bottom,
+    //   );
+    // }
 
     return DesktopContentView(
       title: title,
